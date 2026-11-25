@@ -8,11 +8,13 @@ export default async function handler(req, res) {
   const sec     = `securities=${isin}`;
   const columns = "securities.columns=SHORTNAME,PREVPRICE,COUPONPERIOD,ACCRUEDINT";
 
-  const response = await fetch(`${url1}?iss.meta=off&iss.only=securities&${sec}&${columns}`);
-  if (!response.ok) return res.status(500).json({ error: "iss.moex fetching error" });
+  // const response = await fetch(`${url1}?iss.meta=off&iss.only=securities&${sec}&${columns}`);
+  // if (!response.ok) return res.status(500).json({ error: "iss.moex fetching error" });
   
-  const data = await response.json();
+  // const data = await response.json();
   
-  res.status(200).json({ text: data });
+  // res.status(200).json({ text: data });
+
+  res.status(200).json({ text: url1 });
 }
 
