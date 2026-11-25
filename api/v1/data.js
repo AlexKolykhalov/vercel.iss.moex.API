@@ -1,9 +1,9 @@
 // @ts-check
-import path from "path";
+// import path from "path";
 
 export default async function handler(req, res) {
 
-  path.join(process.cwd(), "moex-ca.pem");
+  // path.join(process.cwd(), "moex-ca.pem");
   
   const isin = "RU000A107TT9";
   
