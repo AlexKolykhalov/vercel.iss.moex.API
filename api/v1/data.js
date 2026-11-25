@@ -1,14 +1,9 @@
 // @ts-check
-import fetch from "node-fetch";
-import https from "https";
-
+import path from "path";
 
 export default async function handler(req, res) {
 
-  const httpsAgent = new https.Agent({
-    rejectUnauthorized: false,
-  });
-
+  path.join(process.cwd(), "moex-ca.pem");
   
   const isin = "RU000A107TT9";
   
@@ -19,7 +14,7 @@ export default async function handler(req, res) {
 
   const response = await fetch(
     `${url1}?iss.meta=off&iss.only=securities&${sec}&${columns}`,
-    { agent: httpsAgent }
+    
   );
   if (!response.ok) return res.status(200).json({ error: response.status });
   
@@ -29,4 +24,3 @@ export default async function handler(req, res) {
 
   // res.status(200).json({ text: url1 });
 }
-
