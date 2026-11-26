@@ -66,8 +66,9 @@ export default async function handler(req, res) {
 	offers.push([date, isin, !isNaN(value) ? value / 100 : 0]);
       });
       dataBon.coupons.data.forEach(row => {
-	const parts = row[0].split("-").map(Number);
-	const date  = new Date(parts[0], parts[1] - 1, parts[2]);
+	// const parts = row[0].split("-").map(Number);
+	// const date  = new Date(parts[0], parts[1] - 1, parts[2]);
+	const date  = row[0];
 	const prc   = Number(row[1]);
 	const value = Number(row[2]);
 	coupons.push([date, isin, !isNaN(prc) ? prc : 0, !isNaN(value) ? value : 0]);
