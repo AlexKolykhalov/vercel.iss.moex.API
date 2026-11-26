@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "regions": ["arn1"],
   "rewrites": [
     { "source": "/v1/data",  "destination": "/api/v1/data" }
   ]
