@@ -1,10 +1,17 @@
 // @ts-check
+
 import path from "path";
 
 export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Разрешен только POST" });
+  }
+  
   path.join(process.cwd(), "moex-ca.pem");
 
-  const range = [["RU000A107TT9", "2025-12-12"]];
+  // const range = [["RU000A107TT9", "2025-12-12"]];
+
+  const range = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
 
   const securities = [];
   const amo        = [];
