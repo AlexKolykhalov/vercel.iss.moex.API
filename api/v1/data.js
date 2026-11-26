@@ -19,6 +19,8 @@ export default async function handler(req, res) {
   const coupons    = [];
   const result     = [];
 
+  console.log(range);
+
   for (let i = 0; i < range.length; i++) {
     const isin = range[i][0];
     const date = range[i][1];
