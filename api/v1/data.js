@@ -19,9 +19,9 @@ export default async function handler(req, res) {
   const coupons    = [];
   const result     = [];
 
-  console.log(range);
+  console.log(range.slice(0, 10));
 
-  for (let i = 0; i < range.length; i++) {
+  for (let i = 0; i < range.slice(0, 10).length; i++) {
     const isin = range[i][0];
     const date = range[i][1];
     const type = isin.substring(0, 2) === "RU" ? "TQCB" : "TQOB";
