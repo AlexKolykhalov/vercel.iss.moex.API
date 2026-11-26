@@ -79,24 +79,24 @@ export default async function handler(req, res) {
 	const value = Number(row[2]);
 	coupons.push([date, isin, !isNaN(prc) ? prc : 0, !isNaN(value) ? value : 0]);
       });
-
-      securities.sort((a, b) => a[1].localeCompare(b[1]));
-      amo.sort((a, b) => a[0].getTime() - b[0].getTime());
-      offers.sort((a, b) => a[0].getTime() - b[0].getTime());
-      coupons.sort((a, b) => a[0].getTime() - b[0].getTime());
-
-      for (let i = 0; i < coupons.length; i++) {
-	result.push([
-	  coupons[i][0].toLocaleDateString("ru-RU"), coupons[i][1], coupons[i][2], coupons[i][3], "",
-	  amo[i] ? amo[i][0].toLocaleDateString("ru-RU") : "", amo[i] ? amo[i][1] : "", amo[i] ? amo[i][2] : "", "",
-	  offers[i] ? offers[i][0].toLocaleDateString("ru-RU") : "", offers[i] ? offers[i][1] : "", offers[i] ? offers[i][2] : "", "",
-	  securities[i] ? securities[i][0] : "", securities[i] ? securities[i][1] : "", securities[i] ? securities[i][2] : "", securities[i] ? securities[i][3] : "", securities[i] ? securities[i][4] : ""
-	]);
-      }
-      
-      return res.status(200).json({ data: result });
     } catch (error) {
       return res.status(500).json({ error: error });
     }
   }
+
+  securities.sort((a, b) => a[1].localeCompare(b[1]));
+  amo.sort((a, b) => a[0].getTime() - b[0].getTime());
+  offers.sort((a, b) => a[0].getTime() - b[0].getTime());
+  coupons.sort((a, b) => a[0].getTime() - b[0].getTime());
+
+  for (let i = 0; i < coupons.length; i++) {
+    result.push([
+      coupons[i][0].toLocaleDateString("ru-RU"), coupons[i][1], coupons[i][2], coupons[i][3], "",
+      amo[i] ? amo[i][0].toLocaleDateString("ru-RU") : "", amo[i] ? amo[i][1] : "", amo[i] ? amo[i][2] : "", "",
+      offers[i] ? offers[i][0].toLocaleDateString("ru-RU") : "", offers[i] ? offers[i][1] : "", offers[i] ? offers[i][2] : "", "",
+      securities[i] ? securities[i][0] : "", securities[i] ? securities[i][1] : "", securities[i] ? securities[i][2] : "", securities[i] ? securities[i][3] : "", securities[i] ? securities[i][4] : ""
+    ]);
+  }
+  
+  return res.status(200).json({ data: result });
 }
