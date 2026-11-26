@@ -66,9 +66,8 @@ export default async function handler(req, res) {
 	offers.push([date, isin, !isNaN(value) ? value / 100 : 0]);
       });
       dataBon.coupons.data.forEach(row => {
-	// const parts = row[0].split("-").map(Number);
-	// const date  = new Date(parts[0], parts[1] - 1, parts[2]);
-	const date  = row[0];
+	const parts = row[0].split("-").map(Number);
+	const date  = new Date(parts[0], parts[1] - 1, parts[2]);
 	const prc   = Number(row[1]);
 	const value = Number(row[2]);
 	coupons.push([date, isin, !isNaN(prc) ? prc : 0, !isNaN(value) ? value : 0]);
@@ -81,9 +80,9 @@ export default async function handler(req, res) {
 
       for (let i = 0; i < coupons.length; i++) {
 	result.push([
-	  coupons[i][0], coupons[i][1], coupons[i][2], coupons[i][3], "",
-	  amo[i] ? amo[i][0] : "", amo[i] ? amo[i][1] : "", amo[i] ? amo[i][2] : "", "",
-	  offers[i] ? offers[i][0] : "", offers[i] ? offers[i][1] : "", offers[i] ? offers[i][2] : "", "",
+	  coupons[i][0].toLocaleDateString("ru-RU"), coupons[i][1], coupons[i][2], coupons[i][3], "",
+	  amo[i] ? amo[i][0].toLocaleDateString("ru-RU") : "", amo[i] ? amo[i][1] : "", amo[i] ? amo[i][2] : "", "",
+	  offers[i] ? offers[i][0].toLocaleDateString("ru-RU") : "", offers[i] ? offers[i][1] : "", offers[i] ? offers[i][2] : "", "",
 	  securities[i] ? securities[i][0] : "", securities[i] ? securities[i][1] : "", securities[i] ? securities[i][2] : "", securities[i] ? securities[i][3] : "", securities[i] ? securities[i][4] : ""
 	]);
       }
