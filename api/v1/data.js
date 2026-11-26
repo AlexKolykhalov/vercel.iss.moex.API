@@ -9,8 +9,6 @@ export default async function handler(req, res) {
   
   path.join(process.cwd(), "moex-ca.pem");
 
-  // const range = [["RU000A107TT9", "2025-12-12"]];
-
   const range = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
 
   const securities = [];
@@ -19,7 +17,7 @@ export default async function handler(req, res) {
   const coupons    = [];
   const result     = [];
 
-  console.log(range.slice(0, 10));
+  // console.log(range.slice(0, 10));
 
   for (let i = 0; i < range.slice(0, 10).length; i++) {
     const isin = range[i][0];
@@ -93,9 +91,9 @@ export default async function handler(req, res) {
 
   for (let i = 0; i < coupons.length; i++) {
     result.push([
-      coupons[i][0].toLocaleDateString("ru-RU"), coupons[i][1], coupons[i][2], coupons[i][3], "",
-      amo[i] ? amo[i][0].toLocaleDateString("ru-RU") : "", amo[i] ? amo[i][1] : "", amo[i] ? amo[i][2] : "", "",
-      offers[i] ? offers[i][0].toLocaleDateString("ru-RU") : "", offers[i] ? offers[i][1] : "", offers[i] ? offers[i][2] : "", "",
+      coupons[i][0].getTime(), coupons[i][1], coupons[i][2], coupons[i][3], "",
+      amo[i] ? amo[i][0].toLocaleDateString("en-US") : "", amo[i] ? amo[i][1] : "", amo[i] ? amo[i][2] : "", "",
+      offers[i] ? offers[i][0].toLocaleDateString("en-US") : "", offers[i] ? offers[i][1] : "", offers[i] ? offers[i][2] : "", "",
       securities[i] ? securities[i][0] : "", securities[i] ? securities[i][1] : "", securities[i] ? securities[i][2] : "", securities[i] ? securities[i][3] : "", securities[i] ? securities[i][4] : ""
     ]);
   }
