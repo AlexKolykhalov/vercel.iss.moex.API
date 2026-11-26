@@ -91,9 +91,9 @@ export default async function handler(req, res) {
 
   for (let i = 0; i < coupons.length; i++) {
     result.push([
-      coupons[i][0].getTime(), coupons[i][1], coupons[i][2], coupons[i][3], "",
-      amo[i] ? amo[i][0].toLocaleDateString("en-US") : "", amo[i] ? amo[i][1] : "", amo[i] ? amo[i][2] : "", "",
-      offers[i] ? offers[i][0].toLocaleDateString("en-US") : "", offers[i] ? offers[i][1] : "", offers[i] ? offers[i][2] : "", "",
+      coupons[i][0], coupons[i][1], coupons[i][2], coupons[i][3], "",
+      amo[i] ? amo[i][0] : "", amo[i] ? amo[i][1] : "", amo[i] ? amo[i][2] : "", "",
+      offers[i] ? offers[i][0] : "", offers[i] ? offers[i][1] : "", offers[i] ? offers[i][2] : "", "",
       securities[i] ? securities[i][0] : "", securities[i] ? securities[i][1] : "", securities[i] ? securities[i][2] : "", securities[i] ? securities[i][3] : "", securities[i] ? securities[i][4] : ""
     ]);
   }
