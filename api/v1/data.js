@@ -11,6 +11,8 @@ export default async function handler(req, res) {
 
   const range = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
 
+  console.log(range);
+
   const isinsTQCB = range.filter(row => row[0].substring(0, 2) === "RU").map(row => row[0]).join(",");
   const isinsTQOB = range.filter(row => row[0].substring(0, 2) !== "RU").map(row => row[0]).join(",");
 
@@ -27,8 +29,7 @@ export default async function handler(req, res) {
     ]);
 
     if (!responses[0].ok || !responses[1].ok) {
-      console.log("One or more responses failed");
-      return;
+      return res.status(500).json({ msg: "securities" });
     }
 
     const [dataTQCB, dataTQOB] = await Promise.all(responses.map(response => response.json()));
@@ -49,8 +50,7 @@ export default async function handler(req, res) {
     const responses1 = await Promise.all(fetches);
     for (let i = 0; i < responses1.length; i++) {
       if (!responses1[i].ok) {
-	console.log("One or more responses failed");
-	break;
+	return res.status(500).json({ msg: "bondization" });
       }
     }
 
