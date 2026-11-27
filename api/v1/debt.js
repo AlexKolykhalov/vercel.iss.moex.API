@@ -14,6 +14,9 @@ export default async function handler(req, res) {
   const from = body.from; // YYYY-MM-DD
   const till = body.till; // YYYY-MM-DD
 
+  console.log(inns);
+  console.log(from, till);
+
   // Bondization
   const p_amo     = "amortizations.columns=amortdate,secid,name,valueprc,issuevalue&amortizations.limit=100";
   const p_offers  = "offers.columns=offerdate,secid,name,price,issuevalue";
